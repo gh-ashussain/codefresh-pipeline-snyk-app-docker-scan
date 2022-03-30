@@ -8,7 +8,7 @@ steps:
     type: build
     image_name: ${{IMAGE_NAME}}
     working_directory: ./
-    tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
+    tag: "latest"
     dockerfile:
       content: |-
         FROM node:8.0-alpine AS builder
