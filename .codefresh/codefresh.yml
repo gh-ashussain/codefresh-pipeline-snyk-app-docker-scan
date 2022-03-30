@@ -25,6 +25,7 @@ steps:
 
         # Copying application code
         COPY . /app
+    disable_push: true    
 
   SnykAppScan:
     title: Snyk Test Application Dependencies
@@ -88,12 +89,3 @@ steps:
           set: # Specify the set operation
             - ${{BuildingDockerImage.imageId}}: # Select any number of target images
               - SECURITY_SCAN: false 
-
-
-  PushingToDockerRegistry:
-    title: Pushing to Docker Registry
-    stage: promote
-    type: push
-    candidate: '${{BuildingDockerImage}}'
-    tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
-    registry: aarlaudsnyk
